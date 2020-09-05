@@ -1,32 +1,39 @@
-import javax.swing.*; //import library 
-import java.awt.event.*; //import for actionListener
+import javax.swing.*;
+import java.awt.event.*;
 
-public class Main {
-  public static void main(String[] args) {
-    // Declaring r1 and r2 as radio buttons
-    JRadioButton r1 = new JRadioButton("A) Heads");
-    JRadioButton r2 = new JRadioButton("B) Tails");
+class RadioButtonExample extends JFrame implements ActionListener {
+  JRadioButton rb1, rb2;
+  JButton b;
 
-    
-    // Set up the frame
-    JFrame f;
-    f = new JFrame();
-
-    // Set locations for radio buttons
-    r1.setBounds(75, 50, 100, 30);
-    r2.setBounds(75, 100, 100, 30);
-
-    // create a button group and add r1 and r2
+  RadioButtonExample() {
+    rb1 = new JRadioButton("Male");
+    rb1.setBounds(100, 50, 100, 30);
+    rb2 = new JRadioButton("Female");
+    rb2.setBounds(100, 100, 100, 30);
     ButtonGroup bg = new ButtonGroup();
-    bg.add(r1);
-    bg.add(r2);
+    bg.add(rb1);
+    bg.add(rb2);
+    b = new JButton("click");
+    b.setBounds(100, 150, 80, 30);
+    b.addActionListener(this);
+    add(rb1);
+    add(rb2);
+    add(b);
+    setSize(300, 300);
+    setLayout(null);
+    setVisible(true);
+  }
 
-    // add elements to frame
-    f.add(r1);
-    f.add(r2);
+  public void actionPerformed(ActionEvent e) {
+    if (rb1.isSelected()) {
+      JOptionPane.showMessageDialog(this, "You are Male.");
+    }
+    if (rb2.isSelected()) {
+      JOptionPane.showMessageDialog(this, "You are Female.");
+    }
+  }
 
-    f.setSize(300, 300);
-    f.setLayout(null);
-    f.setVisible(true);
+  public static void main(String args[]) {
+    new RadioButtonExample();
   }
 }
